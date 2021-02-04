@@ -1,4 +1,6 @@
-<?php namespace Darryldecode\Cart;
+<?php
+
+namespace Darryldecode\Cart;
 
 use Darryldecode\Cart\Exceptions\InvalidConditionException;
 use Darryldecode\Cart\Exceptions\InvalidItemException;
@@ -672,9 +674,7 @@ class Cart
      */
     public function getContent()
     {
-        return (new CartCollection($this->session->get($this->sessionKeyCartItems)))->reject(function($item) {
-            return ! ($item instanceof ItemCollection);
-        });
+        return new CartCollection($this->session->get($this->sessionKeyCartItems));
     }
 
     /**
